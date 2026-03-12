@@ -252,7 +252,7 @@ const Navbar = () => {
                                 >
                                     <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-[#FF6A3D] to-[#FF3D71] flex items-center justify-center text-white font-semibold shadow-lg overflow-hidden">
                                         {profilePhoto ? (
-                                            <img src={profilePhoto} alt="" className="w-full h-full object-cover" />
+                                            <Image src={profilePhoto} alt="Profile" width={36} height={36} className="w-full h-full object-cover" unoptimized />
                                         ) : (
                                             username ? username.charAt(0).toUpperCase() : 'U'
                                         )}

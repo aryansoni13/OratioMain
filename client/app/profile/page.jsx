@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect, useState, useRef } from 'react';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import '../components/bg.css';
 import DashboardLayout from '../components/DashboardLayout';
@@ -301,7 +302,7 @@ export default function ProfilePage() {
                 <div className="md:col-span-2 flex items-center gap-4">
                   <div className="w-20 h-20 rounded-full bg-gradient-to-tr from-amber-100 to-rose-100 dark:from-amber-500/20 dark:to-rose-500/20 flex items-center justify-center overflow-hidden border-2 border-amber-200 dark:border-amber-500/30 flex-shrink-0">
                     {photoPreview ? (
-                      <img src={photoPreview} alt="Profile" className="w-full h-full object-cover" />
+                      <Image src={photoPreview} alt="Profile" width={80} height={80} className="w-full h-full object-cover" unoptimized />
                     ) : (
                       <span className="text-2xl font-bold text-rose-600 dark:text-orange-400">{fullName ? fullName.charAt(0).toUpperCase() : 'U'}</span>
                     )}
