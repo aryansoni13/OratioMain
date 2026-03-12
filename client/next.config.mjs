@@ -1,5 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Enable static export mode
+  output: 'export',
+  // Disable image optimization (required for static export)
+  images: {
+    unoptimized: true,
+  },
   // Disable linting/typechecking during build to save memory on Render's 512MB limit
   eslint: {
     ignoreDuringBuilds: true,
