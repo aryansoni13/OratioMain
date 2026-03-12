@@ -127,6 +127,7 @@ function SidebarContent({ isOpen, toggleSidebar }) {
   useEffect(() => {
     fetchSessions();
     fetchTrash();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [refreshKey]);
 
   const handleDelete = async (sessionId) => {

@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useRef, useState, useCallback, Suspense } from "react";
 import Timer from "./timer";
 import MicrophonePulse from "./microphone";
 import { Video, Mic, Upload, Pause, Play, Check, ArrowLeft, Send } from "lucide-react";
