@@ -11,8 +11,6 @@ services:
         sync: false
       - key: FLASK_DEBUG
         value: "0"
-    buildCommand: docker build -t oratio-backend .
-    startCommand: gunicorn --bind 0.0.0.0:$PORT --timeout 600 app:app
 
   # Frontend Service
   - type: web
