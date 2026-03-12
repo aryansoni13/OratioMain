@@ -3,6 +3,7 @@ services:
   - type: web
     name: oratio-backend
     runtime: docker
+    rootDir: server
     plan: free
     envVars:
       - key: MONGODB_URI
