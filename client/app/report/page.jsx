@@ -1,7 +1,7 @@
 'use client';
 
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 import "react-circular-progressbar/dist/styles.css";
 import AnimatedCircularBar from "../components/AnimatedCircularBar";
 import { MdLibraryBooks, MdEmojiEmotions, MdBarChart, MdAutoAwesome, MdVolumeOff, MdFitnessCenter, MdOutlineRecordVoiceOver, MdOutlineMenuBook, MdOutlineTag, MdOutlineVolumeOff, MdOutlineEditNote, MdOutlineAccountTree } from 'react-icons/md';
@@ -18,7 +18,7 @@ import { API_BASE_URL } from "../constants";
 // --- Ensure all logic is inside a React component ---
 
 
-export default function ReportPage() {
+const ReportContent = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [report, setReport] = useState(null);
@@ -564,5 +564,13 @@ export default function ReportPage() {
 
       </div>
     </DashboardLayout>
+  );
+}
+
+export default function ReportPage() {
+  return (
+    <Suspense fallback={<div className="flex justify-center items-center h-screen"><div className="w-12 h-12 rounded-full border-4 border-[#FF6A3D] border-t-transparent animate-spin"/></div>}>
+      <ReportContent />
+    </Suspense>
   );
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import Link from "next/link";
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
 import {
@@ -61,7 +61,7 @@ const NavItem = ({ href, icon, label, collapsed, isActiveOverride, onDelete }) =
   );
 };
 
-export default function Sidebar({ isOpen, toggleSidebar }) {
+function SidebarContent({ isOpen, toggleSidebar }) {
   const [sessions, setSessions] = useState([]);
   const [trashedSessions, setTrashedSessions] = useState([]);
   const [showTrash, setShowTrash] = useState(false);
@@ -369,5 +369,13 @@ export default function Sidebar({ isOpen, toggleSidebar }) {
         )}
       </aside>
     </div>
+  );
+}
+
+export default function Sidebar({ isOpen, toggleSidebar }) {
+  return (
+    <Suspense fallback={<div className={`h-full pt-16 pointer-events-none fixed left-0 h-[calc(100vh-80px)] pointer-events-auto bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-700 ${isOpen ? "w-72" : "w-20"}`} style={{ top: "80px" }}></div>}>
+      <SidebarContent isOpen={isOpen} toggleSidebar={toggleSidebar} />
+    </Suspense>
   );
 }

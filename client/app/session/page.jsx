@@ -8,18 +8,19 @@ import "../components/bg.css";
 import ContextDialog from "./context";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import Image from "next/image";
 import { useTheme } from "../context/ThemeContext";
 import { invalidateDashboardCache } from "../context/DashboardDataContext";
 import { API_BASE_URL } from "../constants";
+import { DashboardDataProvider } from "../context/DashboardDataContext"; // Assuming this needs to be imported
 
 // ─── Phases ───
 const PHASE_SELECT = "select";
 const PHASE_RECORDING = "recording";
 const PHASE_PREVIEW = "preview";
 
-const WebRTCRecorder = () => {
+const SessionContent = () => {
   const router = useRouter();
   const { theme } = useTheme();
   const isDark = theme === 'dark';
@@ -502,4 +503,12 @@ const WebRTCRecorder = () => {
   );
 };
 
-export default WebRTCRecorder;
+export default function Page() {
+  return (
+    <Suspense fallback={<div className="flex justify-center items-center h-screen"><div className="w-12 h-12 rounded-full border-4 border-[#FF6A3D] border-t-transparent animate-spin"/></div>}>
+      <DashboardDataProvider>
+        <SessionContent />
+      </DashboardDataProvider>
+    </Suspense>
+  );
+}
