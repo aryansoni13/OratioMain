@@ -15,11 +15,11 @@ services:
     startCommand: gunicorn --bind 0.0.0.0:$PORT --timeout 600 app:app
 
   # Frontend Service
-  - type: static_site
+  - type: web
     name: oratio-frontend
-    runtime: node
+    env: static
     buildCommand: npm run build
-    publishPath: out
+    staticPublishPath: out
     rootDir: client
     envVars:
       - key: NEXT_PUBLIC_API_URL
