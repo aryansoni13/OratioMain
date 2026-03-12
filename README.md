@@ -60,6 +60,41 @@ Eloquence is an AI-powered app that enhances public speaking by providing feedba
 - ![PyTorch](https://img.shields.io/badge/PyTorch-%23EE4C2C.svg?style=for-the-badge&logo=PyTorch&logoColor=white)
 - ![NumPy](https://img.shields.io/badge/numpy-%23013243.svg?style=for-the-badge&logo=numpy&logoColor=white)
 
+## 📊 Workflow Architecture
+
+Here is the high-level workflow architecture of the Eloquence (Oratio) platform, detailing how user data flows through the Next.js frontend, Flask backend, and various Machine Learning models for comprehensive analysis.
+
+```mermaid
+graph TD
+    User([User]) -->|Interacts with UI| Frontend[Next.js Frontend]
+    Frontend -->|Uploads Video/Audio| Backend[Flask Backend API]
+    Frontend <-->|Fetches & Manages Data| Backend
+    
+    subgraph Backend ML Processing Pipeline
+        Backend -->|Extracts Audio/Video| Preprocessing[FFmpeg Preprocessing]
+        
+        Preprocessing -->|Transcribes Speech| Whisper[Whisper AI Model]
+        Preprocessing -->|Extracts Frames| OpenCV[OpenCV Frame Extraction]
+        
+        Whisper -->|NLP Analysis| TextAnalysis[spaCy & Gemini API]
+        TextAnalysis -->|Grammar & Vocabulary| Insights_Linguistic[Linguistic Insights]
+        
+        Whisper -->|Audio Analysis| AudioModel[Wav2Vec2 Voice Model]
+        AudioModel -->|Tone, Pace & Emotion| Insights_Vocal[Vocal Insights]
+        
+        OpenCV -->|Analyzes Faces| VisionModel[Facial Emotion Model]
+        VisionModel -->|Facial Expressions| Insights_Visual[Visual Insights]
+        
+        Insights_Linguistic --> Aggregation[Data Aggregation & Scoring]
+        Insights_Vocal --> Aggregation
+        Insights_Visual --> Aggregation
+    end
+    
+    Aggregation -->|Saves Analysis Report| DB[(MongoDB Atlas)]
+    DB -->|Retrieves Report history| Backend
+    Backend -->|Delivers final metrics| Frontend
+    Frontend -->|Displays Report Dashboard| User
+```
 
 ## 📈Progress
 List down all the fully implemented features in your project
