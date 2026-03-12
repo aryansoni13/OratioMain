@@ -288,7 +288,7 @@ const WebRTCRecorder = () => {
               <Image src="/logo1.png" alt="Oratio" width={56} height={56} className="drop-shadow-lg" />
             </div>
             <h1 className="text-3xl md:text-4xl font-extrabold bg-gradient-to-r from-[#FF6A3D] to-[#FF3D71] bg-clip-text text-transparent mb-2">New Session</h1>
-            <p className="text-slate-500 dark:text-slate-400 text-sm mb-12">Choose how you'd like to record</p>
+            <p className="text-slate-500 dark:text-slate-400 text-sm mb-12">Choose how you&apos;d like to record</p>
 
             {/* 3 Option Cards */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 w-full max-w-3xl">
